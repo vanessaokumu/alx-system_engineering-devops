@@ -1,0 +1,3 @@
+#!/usr/bin/env bash
+# Script that displays the lines containing the word bash
+ps faux | grep bash
