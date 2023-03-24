@@ -1,0 +1,3 @@
+- Creating a file
+- Installing a package
+- Executing a command
