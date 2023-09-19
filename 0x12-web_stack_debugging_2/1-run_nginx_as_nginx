@@ -8,10 +8,3 @@ sed -i 's/listen 80;/listen 8080;/' /etc/nginx/sites-available/default
 
 pkill apache2
 sudo -u nginx service nginx start
-
-nginx_user=$(ps -eo user,comm | grep nginx | awk '{print $1}' | uniq)
-if [ "$nginx_user" = "nginx" ]; then
-  echo "Nginx is running as the nginx user."
-else
-  echo "Nginx is not running as the nginx user."
-fi
