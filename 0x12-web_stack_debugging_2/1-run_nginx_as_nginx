@@ -1,0 +1,16 @@
+#!/usr/bin/env bash
+# Fix this container so that Nginx is running as the nginx user.
+
+sed -i 's/user www-data/user nginx/' /etc/nginx/nginx.conf
+
+sed -i 's/listen 80;/listen 8080;/' /etc/nginx/sites-available/default
+
+service nginx restart
+
+# Checking if Nginx is running as the nginx user
+nginx_user=$(ps -eo user,comm | grep nginx | awk '{print $1}' | uniq)
+if [ "$nginx_user" = "nginx" ]; then
+  echo "Nginx is running as the nginx user."
+else
+  echo "Nginx is not running as the nginx user."
+fi
