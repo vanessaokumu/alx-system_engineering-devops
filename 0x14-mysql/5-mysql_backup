@@ -1,0 +1,35 @@
+#!/usr/bin/env bash
+
+if [ $# -ne 1 ]; then
+  echo "Usage: $0 <mysql_password>"
+  exit 1
+fi
+
+mysql_password="$1" # MySQL root password
+
+# Get the current date in the specified format (day-month-year)
+current_date=$(date +'%d-%m-%Y')
+
+backup_dir="/path/to/backup/directory"
+
+mkdir -p "$backup_dir"
+
+dump_file="${backup_dir}/backup.sql"
+
+mysqldump -u root -p"$mysql_password" --all-databases > "$dump_file"
+
+if [ $? -eq 0 ]; then
+  echo "MySQL dump completed successfully."
+  
+  archive_name="${backup_dir}/${current_date}.tar.gz"
+  tar -czvf "$archive_name" -C "$backup_dir" backup.sql
+  
+  if [ $? -eq 0 ]; then
+    echo "Backup archived as $archive_name"
+    rm "$dump_file" # Remove the original dump file
+  else
+    echo "Error: Failed to create the archive."
+  fi
+else
+  echo "Error: MySQL dump failed."
+fi
