@@ -5,11 +5,13 @@ returns information about his/her TODO list progress.
 """
 
 import requests
+import sys
+
 
 def get_employee_todo_progress(employee_id):
     # Define the API endpoint URL
     base_url = "https://jsonplaceholder.typicode.com"
-    todo_url = f"{base_url}/todos"
+    todo_url = f"https://jsonplaceholder.typicode.com/todos"
     user_url = f"{base_url}/users/{employee_id}"
 
     try:
@@ -35,11 +37,8 @@ def get_employee_todo_progress(employee_id):
 
         # Display the progress information
         print(f"Employee {employee_name} is done with tasks ({completed_tasks}/{total_tasks}):"
-              .format(employee_name,
-                      completed_tasks,
-                      total_tasks))
+              .format(employee_name, completed_tasks, total_tasks))
         
-
         # Display completed task titles
         for task in todo_data:
             if task["completed"]:
