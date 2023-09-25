@@ -37,7 +37,8 @@ def get_all_employee_todo_progress():
             if user_id not in tasks_by_user:
                 tasks_by_user[user_id] = []
 
-            tasks_by_user[user_id].append({"username": username, "task": task_title, "completed": task_completed})
+            tasks_by_user[user_id].append({"username": username,
+                "task": task_title, "completed": task_completed})
 
         # Create a JSON file for all employees
         json_filename = "todo_all_employees.json"
@@ -48,6 +49,7 @@ def get_all_employee_todo_progress():
 
     except requests.exceptions.RequestException as e:
         print(f"An error occurred: {e}")
+
 
 if __name__ == "__main__":
     get_all_employee_todo_progress()
