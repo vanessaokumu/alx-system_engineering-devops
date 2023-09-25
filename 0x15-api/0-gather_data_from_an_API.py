@@ -1,10 +1,11 @@
 #!/usr/bin/python3
 """
-Python script that, using this REST API, for a given employee ID, 
+Python script that, using this REST API, for a given employee ID,
 returns information about his/her TODO list progress.
 """
 
 import requests
+
 
 def get_employee_todo_progress(employee_id):
     # Define the API endpoint URL
@@ -18,7 +19,8 @@ def get_employee_todo_progress(employee_id):
         user_response = requests.get(user_url)
 
         # Check if the requests were successful
-        if todo_response.status_code != 200 or user_response.status_code != 200:
+        if todo_response.status_code != 200
+            or user_response.status_code != 200:
             print("Failed to retrieve data. Please check the employee ID.")
             return
 
@@ -34,8 +36,10 @@ def get_employee_todo_progress(employee_id):
         completed_tasks = sum(1 for task in todo_data if task["completed"])
 
         # Display the progress information
-        print(f"Employee {employee_name} is done with tasks ({completed_tasks}/{total_tasks}):")
-        print(f"{employee_name}: {completed_tasks} tasks completed out of {total_tasks}")
+        print(f"Employee {employee_name} is done with tasks
+                ({completed_tasks}/{total_tasks}):")
+        print(f"{employee_name}: {completed_tasks}
+                tasks completed out of {total_tasks}")
 
         # Display completed task titles
         for task in todo_data:
@@ -44,6 +48,7 @@ def get_employee_todo_progress(employee_id):
 
     except requests.exceptions.RequestException as e:
         print(f"An error occurred: {e}")
+
 
 if __name__ == "__main__":
     employee_id = int(input("Enter the employee ID: "))
