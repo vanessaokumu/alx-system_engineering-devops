@@ -34,8 +34,11 @@ def get_employee_todo_progress(employee_id):
         completed_tasks = sum(1 for task in todo_data if task["completed"])
 
         # Display the progress information
-        print(f"Employee {employee_name} is done with tasks ({completed_tasks}/{total_tasks}):")
-        print(f"{employee_name}: {completed_tasks} tasks completed out of {total_tasks}")
+        print(f"Employee {employee_name} is done with tasks ({completed_tasks}/{total_tasks}):"
+              .format(employee_name,
+                      completed_tasks,
+                      total_tasks))
+        
 
         # Display completed task titles
         for task in todo_data:
